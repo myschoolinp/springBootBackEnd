@@ -29,12 +29,12 @@ public class UserController {
 	
 	@GetMapping("home")
 	public ResponseEntity<AppResponse<UserRegister>> home() {
-		AppResponse<?> response =new AppResponse<>();
+		AppResponse<UserRegister> response =new AppResponse<UserRegister>();
 		response.setStatus("SUCCESS");
 		response.setMessage("hello from controller");
-		List list =new ArrayList<UserRegister>();
+		List<UserRegister> list =new ArrayList<UserRegister>();
 		response.setData(list);
-		return new ResponseEntity(response,HttpStatus.OK);
+		return new ResponseEntity<AppResponse<UserRegister>>(response,HttpStatus.OK);
 	}
 	
 	@PostMapping("loginUser")
@@ -52,7 +52,7 @@ public class UserController {
 	    	   statusCode =HttpStatus.OK;
 			   response.setStatus("SUCCESS");
 			   
-			   list.add(currentUser);
+			  list.add(currentUser);
 			   response.setData(list);
 	    	  }else {
 	    		  statusCode =HttpStatus.OK;
@@ -74,7 +74,7 @@ public class UserController {
 			   response.setStatus("FAILED");
 			   response.setData(list);
 		}
-		return new ResponseEntity(response,statusCode);
+		return new ResponseEntity<AppResponse<UserRegister>>(response,statusCode);
 	}
 	@PostMapping("addUser")
 	public ResponseEntity<AppResponse<UserRegister>> addNewUser(@RequestBody UserRegister user){
@@ -102,7 +102,7 @@ public class UserController {
 		   response.setStatus("FAILED");
 		   response.setData(list);
 		}
-		return new ResponseEntity(response,statusCode);
+		return new ResponseEntity<AppResponse<UserRegister>>(response,statusCode);
 		
 	}
 	
